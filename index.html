@@ -15,31 +15,31 @@
   <script type="text/babel">
     //babel은 head에 담아준다.
     const root = document.getElementById("root");
-    function Title() {
+    function App() {
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => setMinutes(event.target.value);
       return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello I'm a title
-        </h3>
-      );
-    }
-    const Button = function () {
-      return (
-        <button
-          style={{ backgroundColor: "tomato" }}
-          onClick={() => console.log("im clicked")}
-        >
-          Click me
-        </button>
-      );
-    };
-
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div> //컴포넌트의 첫글자는 반드시 대문자여야 한다. 소문자는 HTML tag.
-    ); //컴포넌트를 다른 컴포넌트에 넣는 방법
+        <div>
+          <h1>Super Converter</h1> {/*jsx에 javascript식 변수 넣는 방법*/}
+          <label htmlFor="minutes">Minutes</label>
+          {/*input 옆에 써주는 것. HTML에서 쓰는 방법 글씨를 누르면 옆에 id를 for로 맞춘 input이 눌러진다. 그래서 htmlFor 라고 써줘야함.*/}
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
+        </div>
+      ); //컴포넌트의 첫글자는 반드시 대문자여야 한다. 소문자는 HTML tag.
+    } //컴포넌트를 다른 컴포넌트에 넣는 방법
     //연습중입니다.
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root); //여기서 렌더링을 한번 해주고 나서 버튼을 클릭했을 때 렌더링을 더이상 안해주기 때문에 container 안에 있는 counter가 올라가지 않는다. 그렇기 때문에 randering을 새로 해주는 함수 만들어서 넣음.
   </script>
 </html>
+
+<!-- <button style={{ backgroundColor: "tomato" }} //기본적으로 style을 인라인으로
+넣을 때는 객체형태로 들어가야 한다. onClick={() => console.log("im clicked")} > -->
